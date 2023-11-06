@@ -2,7 +2,7 @@
 ##### _The only known encryption which is mathematically unbreakable._
 
 CHANGES:
-Added in random ciphertext to make it even harder that's ran with bash inside `letters.sh`.
+Added in random ciphertext to make it even harder that's ran with bash inside `letters.sh`; this is done everytime you run `php run.php`.
 
 Added in `dice.sh` for a simulated die; written in bash.
 
