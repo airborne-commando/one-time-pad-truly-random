@@ -4,23 +4,24 @@
 roll_die() {
     local random_bytes
     local random_number
-    local range=256
+    local range=5
 
-    # Read 1 byte from /dev/urandom (256 possibilities)
+    # Read 1 byte from /dev/urandom (5 possibilities)
     random_bytes=$(od -An -N1 -tu1 < /dev/urandom)
     
-    # Calculate the random number within the desired range
-    let "random_number = $random_bytes % $range + 1"
+    # Calculate the random number within the desired range (0 to 5)
+    let "random_number = ($random_bytes % $range) + 1"
     
-    # If the random number is greater than 6, roll again to ensure fairness
-    if [ "$random_number" -gt 6 ]; then
-        roll_die
-    else
-        echo "$random_number"
-    fi
+    echo "$random_number"
 }
 
-# Roll the die
-result=$(roll_die)
+# Roll two dice
+die1=$(roll_die)
+die2=$(roll_die)
 
-echo "You rolled: $result"
+echo "Result of Die 1: $die1"
+echo "Result of Die 2: $die2"
+
+# Calculate the total
+total=$((die1 + die2))
+echo "Total: $total"
