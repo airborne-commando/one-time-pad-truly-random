@@ -17,6 +17,10 @@ require __DIR__ . '/src/OneTimePadModulo26.php';
 
 $cipher = new OneTimePadModulo26;
 
+// Generate random plain text and cipher key using the shell script
+$randomPlainText = shell_exec('./letters.sh'); // 256 random letters
+$randomCipherKey = shell_exec('./letters.sh'); // 256 random letters
+
 // For demonstration purposes, let's just use these text files as the source of our message and cipher keys.
 $plainText = preg_replace('/[^A-Z]/', '', strtoupper(file_get_contents('./text/plaintext.txt')));
 $cipherKey = preg_replace('/[^A-Z]/', '', strtoupper(file_get_contents('./text/cipherkey.txt')));
