@@ -3,6 +3,7 @@
 
 CHANGES:
 Added in random ciphertext to make it even harder that's ran with bash inside `letters.sh`.
+Added in `dice.sh` for a simulated die; written in bash.
 
 ## Perfect Encryption
 **One Time Pad**, variously known as the **Vernam Cipher** and the **Perfect Cipher**, is the only existing encryption which is mathematically unbreakable.  And it was born in the late 1800's.
