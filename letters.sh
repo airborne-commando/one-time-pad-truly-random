@@ -31,5 +31,3 @@ for ((i=0; i<2048; i++)); do
 done
 
 echo "$random_letters" > text/cipherkey.txt
-
-echo "Random letters saved to cipherkey.txt"
