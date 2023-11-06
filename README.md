@@ -3,6 +3,7 @@
 
 CHANGES:
 Added in random ciphertext to make it even harder that's ran with bash inside `letters.sh`.
+
 Added in `dice.sh` for a simulated die; written in bash.
 
 ## Perfect Encryption
