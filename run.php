@@ -38,11 +38,11 @@ file_put_contents('./text/ciphertext.txt', $cipher->tty($cipherText));
 // Displays a "vigenere table," also known as a "tabula recta."
 echo $cipher->get_vigenere_table();
 
-// Displays the plain text message, the one time pad cipher key and the resulting safe to transmit cipher text.
+// Displays the plain text message, the one time pad cipher key, and the resulting safe-to-transmit cipher text.
 $messageLength = strlen($plainText);
 $cipherKeyUsed = substr($cipherKey, 0, $messageLength);
 
-echo 'Plain:  ' . $cipher->tty($plainText) . " (message)\n";
-echo 'Key:    ' . $cipher->tty($cipherKeyUsed) . " (secret)\n";
-echo '        ' . $cipher->tty(str_repeat('-', $messageLength)) . "\n";
-echo 'Cipher: ' . $cipher->tty($cipherText) . " (cipher)\n";
+echo 'Plain:  ' . implode(' ', str_split($cipher->tty($plainText))) . " (message)\n";
+echo 'Key:    ' . implode(' ', str_split($cipher->tty($cipherKeyUsed))) . " (secret)\n";
+echo '        ' . implode(' ', str_split(str_repeat('-', $messageLength))) . "\n";
+echo 'Cipher: ' . implode(' ', str_split($cipher->tty($cipherText))) . " (cipher)\n";
