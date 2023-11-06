@@ -18,7 +18,7 @@ generate_random_letter() {
     echo -n "$random_letter"
 }
 
-# Generate 2048 random letters, you can add more by editing i<value
+# Generate 2048 random letters, you can add/decrease by editing i<value
 #EXAMPLE a 512 ciphertext:
 #random_letters=""
 #for ((i=0; i<512; i++)); do
