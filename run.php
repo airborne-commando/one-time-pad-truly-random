@@ -17,6 +17,16 @@ require __DIR__ . '/src/OneTimePadModulo26.php';
 
 $cipher = new OneTimePadModulo26;
 
+// Check if user input is provided as a command-line argument
+if ($argc > 1) {
+    // Get user input from the command line argument
+    $userInput = strtoupper($argv[1]);
+
+    // Save user input to plaintext.txt
+    file_put_contents('./text/plaintext.txt', $userInput);
+}
+
+
 // Generate random plain text and cipher key using the shell script
 $randomPlainText = shell_exec('./letters.sh'); // 256 random letters
 $randomCipherKey = shell_exec('./letters.sh'); // 256 random letters
