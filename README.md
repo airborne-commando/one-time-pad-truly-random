@@ -28,7 +28,7 @@ Clone or download the files into a machine with PHP from the github repository.
 
 1. Enter the source root directory from the shell (`cd /path/to/repository`).
 2. Do `php run.php` from the command line.
-3. add custom messages from `php run.php` IE `php run.php every good dog deserve treats even me` it will be added to the `plaintext.txt`
+3. add custom messages from `php run.php` IE `php run.php "every good dog deserve treats even me"` it will be added to the `plaintext.txt`
 
 
 ## About the Demonstration Script and Files
