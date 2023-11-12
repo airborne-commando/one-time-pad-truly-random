@@ -4,6 +4,8 @@
 CHANGES:
 Added in random ciphertext to make it even harder that's ran with bash inside `letters.sh`; this is done everytime you run `php run.php`.
 
+Added in a decryption tool in php, same code but uses the cipherkey and ciphertext (secrets) and decrypts your stuff accurately.
+
 Added in `dice.sh` for a simulated die; written in bash.
 
 ## Perfect Encryption
