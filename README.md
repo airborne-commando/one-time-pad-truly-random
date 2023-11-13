@@ -32,6 +32,29 @@ Clone or download the files into a machine with PHP from the github repository.
 2. Do `php run.php` from the command line.
 3. add custom messages from `php run.php` IE `php run.php "every good dog deserve treats even me"` it will be added to the `plaintext.txt`, be sure to concat your sentences with a `-` or `""`
 
+### Running the dcryption tool
+
+1. Enter the source root directory from the shell (`cd /path/to/repository`).
+2. edit the cipherkey.txt and ciphertext.txt (secret)
+3. Do `php run-decry.php` from the command line.
+4. It should run the decryption correctly.
+
+Example
+cipherkey.txt:
+```
+Key:    H I W O U   Z K E K C   Q R R T N   J W T E R   M P Z B (secret)
+```
+```
+hiwouzkekcqrrtnjwtermpzbxbgujdhhoubqwmcqizqfetffqlwlrxzullyicvr
+```
+ciphertext.txt
+```
+Cipher: L D A F S   F Y S N D   E P U X F   N N O I J   R D N E (cipher)
+```
+```
+LDAFS FYSND EPUXF NNOIJ RDNE
+```
+
 
 ## About the Demonstration Script and Files
 
