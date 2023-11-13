@@ -74,6 +74,9 @@ This is a PHP script written to run from the command line strictly to demonstrat
 | `/text/ciphertext.txt`  | This file contains output from the script showing the encrypted message.  _This file is replaced every time the script is run._  |
 | `/text/plaintext.txt`  | The source (unencrypted, plain text) message.  |
 | `/text/vigenere-*.txt`  | The Vigenere table, also known as the &ldquo;tabula recta,&rdquo; in monospace text in case you want to try doing the one time pad by hand or simply to study.  |
+| `/run-decry.php` | The decryption tool written in php, bascially the same as `/run.php`. |
+| `/dice.sh` | a shell script to randomly roll some die; useful if you really want to randomize your cryptography by the value. |
+| `/letters.sh` | a shell script used by `run.php`, decided to use linux this time around for better cryptography, used for random ciphertext to make it impossible to crack.
 
 ## About the One Time Pad
 
