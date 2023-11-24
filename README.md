@@ -101,7 +101,9 @@ One cheap and easy way to create your own random key sequences is by throwing di
 
 By adding the results of a 2-die throw, you can produce a number between 0-25.  You then translate those numbers to a capital letter and record it to your secret cipher key.
 
-The easy way, of course, is to visit the [random.org string generator](https://www.random.org/strings/) and [generate 205 strings of 5 characters each](https://www.random.org/strings/?num=205&len=5&upperalpha=on&unique=off&format=html&rnd=new), as I did to create the `cipherkey.txt` file.
+~~The easy way, of course, is to visit the [random.org string generator](https://www.random.org/strings/) and [generate 205 strings of 5 characters each](https://www.random.org/strings/?num=205&len=5&upperalpha=on&unique=off&format=html&rnd=new), as I did to create the `cipherkey.txt` file.~~
+
+Just run ``php run.php`` and it should generate the cipherekey for you.
 
 ## Modular Arithmetic
 ["Modular arithmetic"](https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/what-is-modular-arithmetic) is used to derive the cipher text from the plain text message using the cipher key, one letter at a time.
