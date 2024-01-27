@@ -83,10 +83,4 @@ echo '        ' . $cipher->tty(str_repeat('-', $messageLength)) . "\n";
 echo 'Cipher: ' . $cipher->tty($cipherText) . " (cipher)\n";
 
 // Clear the screen after the script finishes
-if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-    // For Windows
-    system('cls');
-} else {
-    // For Unix-like systems
     system('clear');
-}
