@@ -83,4 +83,19 @@ echo '        ' . $cipher->tty(str_repeat('-', $messageLength)) . "\n";
 echo 'Cipher: ' . $cipher->tty($cipherText) . " (cipher)\n";
 
 // Clear the screen after the script finishes
-    system('clear');
+system('clear');
+
+$ciperecho = './text/ciphertext.txt';
+
+// Check if the file exists
+if (file_exists($ciperecho)) {
+    // Read the file into an array of lines
+    $lines = file($ciperecho);
+
+    // Output each line
+    foreach ($lines as $line) {
+        echo $line;
+    }
+} else {
+    echo "File not found: $ciperecho";
+}
