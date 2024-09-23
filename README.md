@@ -61,7 +61,7 @@ example:
 ```
 php run-decry.php text/cipherkey.txt
 ```
-To decrypt a message
+To decrypt a message provided you have the right ciphertext.
 
 
 ## About the Demonstration Script and Files
