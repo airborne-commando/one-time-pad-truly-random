@@ -55,6 +55,14 @@ Cipher: L D A F S   F Y S N D   E P U X F   N N O I J   R D N E (cipher)
 LDAFS FYSND EPUXF NNOIJ RDNE
 ```
 
+example:
+
+
+```
+php run-decry.php text/cipherkey.txt
+```
+To decrypt a message
+
 
 ## About the Demonstration Script and Files
 
