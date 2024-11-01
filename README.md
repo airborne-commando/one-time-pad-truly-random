@@ -89,15 +89,19 @@ Just run ``python run.py`` and it should generate the cipherekey for you.
 ## Modular Arithmetic
 
 Okay, let's make this super simple for a 4-year-old:
+
 Imagine you have a special alphabet wheel with all the letters on it.
 When you want to send a secret message, you:
-Pick a letter from your message
-Spin the wheel a little bit
-Write down the new letter you see
+1. Pick a letter from your message
+2. Spin the wheel a little bit
+3. Write down the new letter you see
+
 To read the secret message:
-Look at the secret letter
-Spin the wheel back the same amount
-Now you see the real letter!
+
+1. Look at the secret letter
+2. Spin the wheel back the same amount
+3. Now you see the real letter!
+
 It's like a fun game where you change letters into other letters to keep secrets!
 
 the TL:DR
