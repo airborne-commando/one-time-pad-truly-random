@@ -31,6 +31,7 @@ Clone or download the files into a machine with PHP from the github repository.
 1. Enter the source root directory from the shell (`cd /path/to/repository`).
 2. Do `php run.php` from the command line.
 3. add custom messages from `php run.php` IE `php run.php "every good dog deserve treats even me"` it will be added to the `plaintext.txt`, be sure to concat your sentences with a `-` or `""`
+4. you will also need to define an agrunment before running Use 'file <file_path>' or 'text <your_text>' as arguments. IE `php run.php text.txt` or `php run.php your console text`
 
 ### Running the dcryption tool
 
