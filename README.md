@@ -137,7 +137,3 @@ The solution is modular arithmetic: _**(c - k + 26) mod 26 = m**_
 Since the +26 we added to the _dividend_ is evenly divisible by the modulus, zero is added to the remainder _**m**_ which, of course,  does not affect the result.  Adding +26 to the _dividend_ ensures that the calculation is made using a _whole number_ {&ge;0}.
 
 This produces a result between 0 and 25, which easily translates into a letter from A to Z.
-
-
-## Contact
-Feel free to comment or ask questions via [my website contact form](https://unrivaledcreations.com/contact).
