@@ -70,7 +70,7 @@ This is a PHP script written to run from the command line strictly to demonstrat
 | `/run.py` | The script on which you can encrypt/decrypt your text/console input output. |
 | `/text/cipherkey.txt`  | This file contains the cipher key:  A random sequence of alphabetic characters in uppercase, from A through Z. _This file is replaced every time the script is run._   |
 | `/text/ciphertext.txt`  | This file contains output from the script showing the encrypted message.  _This file is replaced every time the script is run._  |
-| `/text/plaintext.txt`  | The source (unencrypted, plain text) message.  |
+| `/text/plaintext.txt`  | The source (unencrypted, plain text) message. _This file is replaced every time the script is run._   |
 | `/text/vigenere-*.txt`  | The Vigenere table, also known as the &ldquo;tabula recta,&rdquo; in monospace text in case you want to try doing the one time pad by hand or simply to study.  |
 
 ## About the One Time Pad
