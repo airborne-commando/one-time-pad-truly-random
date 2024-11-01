@@ -87,6 +87,22 @@ Just run ``python run.py`` and it should generate the cipherekey for you.
 
 
 ## Modular Arithmetic
+
+Okay, let's make this super simple for a 4-year-old:
+Imagine you have a special alphabet wheel with all the letters on it.
+When you want to send a secret message, you:
+Pick a letter from your message
+Spin the wheel a little bit
+Write down the new letter you see
+To read the secret message:
+Look at the secret letter
+Spin the wheel back the same amount
+Now you see the real letter!
+It's like a fun game where you change letters into other letters to keep secrets!
+
+the TL:DR
+
+
 ["Modular arithmetic"](https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/what-is-modular-arithmetic) is used to derive the cipher text from the plain text message using the cipher key, one letter at a time.
 
 In normal arithmetic, division takes place when you divide a _dividend_ by a _divisor_ to compute the _quotient:  **A &divide; B = Q**_.  You will have a _remainder_ If the _dividend_ is not evenly divisible by the _divisor:  **A &divide; B = Q <sup>remainder R</sup>**_.
