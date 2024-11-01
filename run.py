@@ -80,7 +80,7 @@ def main():
             with open(sys.argv[3], 'r') as file:
                 user_input = file.read().upper()
         elif input_type == 'text':
-            user_input = sys.argv[3].upper()
+            user_input = ' '.join(sys.argv[3:]).upper()  # Join all arguments after 'text' into a single string
         else:
             print("Error: Invalid input. Use 'encrypt file <file_path>' or 'encrypt text <your_text>' as arguments.")
             return
