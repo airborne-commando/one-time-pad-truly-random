@@ -2,11 +2,7 @@
 ##### _The only known encryption which is mathematically unbreakable._
 
 ### CHANGES:
-* Added in random ciphertext to make it even harder that's ran with bash inside `letters.sh`; this is done everytime you run `php run.php`.
-
-* Added in a decryption tool in php, same code but uses the cipherkey and ciphertext (secrets) and decrypts your stuff accurately.
-
-* Added in `dice.sh` for a simulated die; written in bash.
+* Added in `run.py` with the arguments Use 'encrypt file <file_path>', 'encrypt text <your_text>', or 'decrypt' as arguments. Will delete these other files soon maybe as any machine can run python.
 
 ## Perfect Encryption
 **One Time Pad**, variously known as the **Vernam Cipher** and the **Perfect Cipher**, is the only existing encryption which is mathematically unbreakable.  And it was born in the late 1800's.
@@ -31,13 +27,13 @@ Clone or download the files into a machine with PHP from the github repository.
 1. Enter the source root directory from the shell (`cd /path/to/repository`).
 2. you will also need to define an agrunment before running Use 'file <file_path>' or 'text <your_text>' as arguments. 
 
-IE `php run.php text.txt` or `php run.php your console text`
+IE `python run.py 'encrypt file <file_path>'` or `python run.py encrypt text <your_text>`
 
 ### Running the dcryption tool
 
 1. Enter the source root directory from the shell (`cd /path/to/repository`).
 2. edit the cipherkey.txt and ciphertext.txt (secret)
-3. Do `php run-decry.php` from the command line.
+3. Do `python run.py decrypt` from the command line.
 4. It should run the decryption correctly.
 
 Example
@@ -56,12 +52,6 @@ Cipher: L D A F S   F Y S N D   E P U X F   N N O I J   R D N E (cipher)
 LDAFS FYSND EPUXF NNOIJ RDNE
 ```
 
-example:
-
-
-```
-php run-decry.php text/cipherkey.txt
-```
 To decrypt a message provided you have the right ciphertext.
 
 
@@ -69,7 +59,7 @@ To decrypt a message provided you have the right ciphertext.
 
 ### What It Does
 
-`run.php` loads the cipher key from the file `/text/cipherkey.txt`; loads the plain text from the file `/text/plaintext.txt`; performs a modulo 26 (alphabetic) one time pad using those loaded values; and then saves the result to `/text/ciphertext.txt`. It also displays a Vigenere table, sometimes called the "tabula recta," to the screen with the plain text, cipher key and cipher text immediately below it for your study.
+`python run.py` loads the cipher key from the file `/text/cipherkey.txt`; loads the plain text from the file `/text/plaintext.txt`; performs a modulo 26 (alphabetic) one time pad using those loaded values; and then saves the result to `/text/ciphertext.txt`. It also displays a Vigenere table, sometimes called the "tabula recta," to the screen with the plain text, cipher key and cipher text immediately below it for your study.
 
 This is a PHP script written to run from the command line strictly to demonstrate the mathemetics behind the one time pad; namely, the modulo 26 method.  Modulo 10 (numerals) and modulo 2 (binary) also work; but this demonstration is for modulo 26.
 
@@ -77,15 +67,12 @@ This is a PHP script written to run from the command line strictly to demonstrat
 
 | File Name | File Description |
 | --- | --- |
-| `/run.php` | Shows by example how to use the `OneTimePadModulo26` class. |
+| `/run.py` | Shows by example how to use the `OneTimePadModulo26` class. |
 | `/src/OneTimePadModulo26.php` | Contains the `OneTimePadModulo26` class. |
 | `/text/cipherkey.txt`  | This file contains the cipher key:  A random sequence of alphabetic characters in uppercase, from A through Z.  |
 | `/text/ciphertext.txt`  | This file contains output from the script showing the encrypted message.  _This file is replaced every time the script is run._  |
 | `/text/plaintext.txt`  | The source (unencrypted, plain text) message.  |
 | `/text/vigenere-*.txt`  | The Vigenere table, also known as the &ldquo;tabula recta,&rdquo; in monospace text in case you want to try doing the one time pad by hand or simply to study.  |
-| `/run-decry.php` | The decryption tool written in php, bascially the same as `/run.php` except it will decrypt the given ciphertext and cipherkey. |
-| `/dice.sh` | a shell script to randomly roll some die; useful if you really want to randomize your cryptography by the value. |
-| `/letters.sh` | a shell script used by `run.php`, decided to use linux this time around for better cryptography, used for random ciphertext to make it impossible to crack (provided you don't give the cipherkey to anyone).
 
 ## About the One Time Pad
 
@@ -112,7 +99,7 @@ By adding the results of a 2-die throw, you can produce a number between 0-25.  
 
 ~~The easy way, of course, is to visit the [random.org string generator](https://www.random.org/strings/) and [generate 205 strings of 5 characters each](https://www.random.org/strings/?num=205&len=5&upperalpha=on&unique=off&format=html&rnd=new), as I did to create the `cipherkey.txt` file.~~
 
-Just run ``php run.php`` and it should generate the cipherekey for you.
+Just run ``python run.py`` and it should generate the cipherekey for you.
 
 ## Modular Arithmetic
 ["Modular arithmetic"](https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/what-is-modular-arithmetic) is used to derive the cipher text from the plain text message using the cipher key, one letter at a time.
