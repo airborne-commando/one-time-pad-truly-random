@@ -2,7 +2,7 @@
 ##### _The only known encryption which is mathematically unbreakable._
 
 ### CHANGES:
-* Added in `run.py` with the arguments Use 'encrypt file <file_path>', 'encrypt text <your_text>', or 'decrypt' as arguments. Will delete these other files soon maybe as any machine can run python.
+* Added in `run.py` with the arguments Use 'encrypt file <file_path>', 'encrypt text <your_text>', or 'decrypt' as arguments.
 
 ## Perfect Encryption
 **One Time Pad**, variously known as the **Vernam Cipher** and the **Perfect Cipher**, is the only existing encryption which is mathematically unbreakable.  And it was born in the late 1800's.
