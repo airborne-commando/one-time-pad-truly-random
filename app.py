@@ -78,8 +78,24 @@ def encrypt():
 @app.route('/decrypt', methods=['POST'])
 def decrypt():
     cipher = OneTimePadModulo26()
-    cipher_text = request.form['ciphertext'].upper()
-    key = request.form['key'].upper()
+    
+    if 'ciphertext_file' in request.files:
+        ciphertext_file = request.files['ciphertext_file']
+        if ciphertext_file.filename != '':
+            cipher_text = ciphertext_file.read().decode('utf-8').upper()
+        else:
+            cipher_text = request.form['ciphertext'].upper()
+    else:
+        cipher_text = request.form['ciphertext'].upper()
+    
+    if 'key_file' in request.files:
+        key_file = request.files['key_file']
+        if key_file.filename != '':
+            key = key_file.read().decode('utf-8').upper()
+        else:
+            key = request.form['key'].upper()
+    else:
+        key = request.form['key'].upper()
 
     # Clean up the input
     cipher_text = re.sub(r'[^A-Z]', '', cipher_text)
