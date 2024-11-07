@@ -3,6 +3,7 @@
 
 ### CHANGES:
 * Added in `run.py` with the arguments Use 'encrypt file <file_path>', 'encrypt text <your_text>', or 'decrypt' as arguments.
+* Add in flask, to run set up a python virtual environment and install flask; then run app.py
 
 ## Perfect Encryption
 **One Time Pad**, variously known as the **Vernam Cipher** and the **Perfect Cipher**, is the only existing encryption which is mathematically unbreakable.  And it was born in the late 1800's.
