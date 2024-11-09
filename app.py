@@ -3,6 +3,7 @@ import os
 import re
 import random
 import string
+import socket
 
 app = Flask(__name__)
 
@@ -114,5 +115,20 @@ def decrypt():
 def download_file(filename):
     return send_file(f'./text/{filename}', as_attachment=True)
 
+def find_available_port(start_port=5000, max_port=65535):
+    for port in range(start_port, max_port + 1):
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            try:
+                s.bind(('localhost', port))
+                return port
+            except socket.error:
+                continue
+    return None
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = find_available_port()
+    if port:
+        print(f"Starting server on port {port}")
+        app.run(debug=True, port=port)
+    else:
+        print("No available ports found.")
