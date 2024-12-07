@@ -4,7 +4,7 @@ import re
 import random
 import string
 
-#Author Nthompson096 on gitgub
+# Author Nthompson096 on github
 
 class OneTimePadModulo26:
     def __init__(self):
@@ -33,7 +33,10 @@ class OneTimePadModulo26:
         return '\n'.join(table)
 
 def generate_random_letters(length=2048):
-    return ''.join(random.choice(string.ascii_lowercase) for _ in range(length))
+    return ''.join(random.choice(string.ascii_uppercase) for _ in range(length))
+
+def scramble_text(text):
+    return ''.join(random.sample(text, len(text)))
 
 def decrypt_with_key_from_file(ciphertext_file, key_file):
     with open(ciphertext_file, 'r') as file:
@@ -109,8 +112,18 @@ def main():
             print("For perfect encryption in the one time pad, the key length must be equal to, or greater than, the message length.")
             return
 
+        # Ask if user wants to scramble the cipher and key
+        scramble = input("Do you want to scramble the cipher and key? (y/n): ").lower() == 'y'
+
+        if scramble:
+            cipher_text = scramble_text(cipher_text)
+            cipher_key = scramble_text(cipher_key)
+
         with open('./text/ciphertext.txt', 'w') as file:
             file.write(cipher.tty(cipher_text))
+
+        with open('./text/cipherkey.txt', 'w') as file:
+            file.write(cipher.tty(cipher_key))
 
         print(cipher.get_vigenere_table())
 
