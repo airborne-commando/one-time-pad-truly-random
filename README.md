@@ -39,6 +39,17 @@ You also have an option to scramble the ciphertext; to add a layer of security.
 3. Do `python run.py decrypt` from the command line.
 4. It should run the decryption correctly.
 
+### Brute force tool
+For those with a scrambled key there are two ways of solving this:
+- Brute Force
+- Manual intervention
+
+With the brute force tool you'll need to install the following:
+
+    pip3 install transformers torch
+
+This will require a nvidia card however, otherweise you'll run on CPU.
+
 Example
 cipherkey.txt:
 ```
