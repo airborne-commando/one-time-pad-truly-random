@@ -50,7 +50,7 @@ With the brute force tool you'll need to install the following:
 
     pip3 install transformers torch
 
-This will require a nvidia card however, otherweise you'll run on CPU.
+This will require a nvidia card however, otherweise you'll run on CPU; will also have to tell you this requires at least 8GB vram and uses the gpt2 model for lang.
 
 Example
 cipherkey.txt:
