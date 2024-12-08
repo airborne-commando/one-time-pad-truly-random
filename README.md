@@ -30,6 +30,8 @@ Clone or download the files into a machine with PHP from the github repository.
 
 IE `python run.py 'encrypt file <file_path>'` or `python run.py encrypt text <your_text>`
 
+You also have an option to scramble the ciphertext; to add a layer of security.
+
 ### Running the dcryption tool
 
 1. Enter the source root directory from the shell (`cd /path/to/repository`).
