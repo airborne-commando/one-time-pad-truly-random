@@ -4,7 +4,7 @@ import re
 import random
 import string
 
-# Author Nthompson096 on github
+# Author airborne-commando on github
 
 class OneTimePadModulo26:
     def __init__(self):
