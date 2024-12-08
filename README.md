@@ -44,6 +44,8 @@ For those with a scrambled key there are two ways of solving this:
 - Brute Force
 - Manual intervention
 
+With a scrambled ciphertext however this will take forever to solve.
+
 With the brute force tool you'll need to install the following:
 
     pip3 install transformers torch
