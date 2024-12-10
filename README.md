@@ -83,8 +83,8 @@ This is a PHP script written to run from the command line strictly to demonstrat
 
 | File Name | File Description |
 | --- | --- |
-| `/run.py` | The script on which you can encrypt/decrypt your text/console input output. |
-| `brtfrce.py` | This script will attempt to brute force a scrambled ciphertext, as long as you have a valid key pair. |
+| `./run.py` | The script on which you can encrypt/decrypt your text/console input output. |
+| `./brtfrce.py` | This script will attempt to brute force a scrambled ciphertext, as long as you have a valid key pair. |
 | `/text/cipherkey.txt`  | This file contains the cipher key:  A random sequence of alphabetic characters in uppercase, from A through Z. _This file is replaced every time the script is run._   |
 | `/text/ciphertext.txt`  | This file contains output from the script showing the encrypted message.  _This file is replaced every time the script is run._  |
 | `/text/plaintext.txt`  | The source (unencrypted, plain text) message. _This file is replaced every time the script is run._   |
