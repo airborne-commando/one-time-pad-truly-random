@@ -137,6 +137,12 @@ def main():
         key_file = "./text/cipherkey.txt"
         decrypt_with_key_from_file(ciphertext_file, key_file)
 
+    elif command == '-/?':
+            print("commands are as follows:\n"
+                "Use '-e' to encrypt a file '-f' or text '-t'\n"
+                "use '-d' to decrypt a file '-f' or just pass '-d' to decrypt the ./text directory")
+            return
+
     else:
         print("Error: Invalid command. Use '-e' or '-d'.")
 
