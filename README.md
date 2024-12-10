@@ -2,7 +2,7 @@
 ##### _The only known encryption which is mathematically unbreakable._
 
 ### CHANGES:
-* Added in `run.py` with the arguments Use 'encrypt file <file_path>', 'encrypt text <your_text>', or 'decrypt' as arguments.
+* Added in `run.py` with the arguments Use `-e -f <file_path>`, `-d -t <your_text>`, or `-d` as arguments.
 * Add in flask, to run set up a python virtual environment and install flask; then run app.py
 * Added in a help option `-/?` for the user to see a list of commands
 
