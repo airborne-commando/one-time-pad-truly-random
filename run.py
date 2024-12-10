@@ -70,24 +70,24 @@ def main():
     cipher = OneTimePadModulo26()
 
     if len(sys.argv) < 2:
-        print("Error: No input provided. Use 'encrypt file <file_path>', 'encrypt text <your_text>', or 'decrypt' as arguments.")
+        print("Error: No input provided. Use '-e -f <file_path>', '-e -t <your_text>', or '-d' as arguments.")
         return
 
     command = sys.argv[1]
 
-    if command == 'encrypt':
+    if command == '-e':
         if len(sys.argv) < 4:
-            print("Error: Invalid input for encryption. Use 'encrypt file <file_path>' or 'encrypt text <your_text>' as arguments.")
+            print("Error: Invalid input for encryption. Use '-e -f <file_path>', '-e -t <your_text>', or '-d' as arguments.")
             return
 
         input_type = sys.argv[2]
-        if input_type == 'file' and os.path.exists(sys.argv[3]):
+        if input_type == '-f' and os.path.exists(sys.argv[3]):
             with open(sys.argv[3], 'r') as file:
                 user_input = file.read().upper()
-        elif input_type == 'text':
+        elif input_type == '-t':
             user_input = ' '.join(sys.argv[3:]).upper()  # Join all arguments after 'text' into a single string
         else:
-            print("Error: Invalid input. Use 'encrypt file <file_path>' or 'encrypt text <your_text>' as arguments.")
+            print("Error: Invalid input. Use '-e -f <file_path>', '-e -t <your_text>', or '-d' as arguments.")
             return
 
         # Ensure the 'text' directory exists
@@ -115,7 +115,7 @@ def main():
             return
 
         # Ask if the user wants to scramble the ciphertext
-        scramble_option = input("Do you want to scramble the ciphertext? (y/n): ").lower()
+        scramble_option = input("Do you want to scramble the ciphertext? (n/y): ").lower()
         if scramble_option == 'y':
             cipher_text = scramble_text(cipher_text)
 
@@ -132,13 +132,13 @@ def main():
         print(f"        {'-' * (message_length * 2 - 1)}")
         print(f"Cipher: {' '.join(cipher.tty(cipher_text))} (cipher)")
 
-    elif command == 'decrypt':
+    elif command == '-d':
         ciphertext_file = "./text/ciphertext.txt"
         key_file = "./text/cipherkey.txt"
         decrypt_with_key_from_file(ciphertext_file, key_file)
 
     else:
-        print("Error: Invalid command. Use 'encrypt' or 'decrypt'.")
+        print("Error: Invalid command. Use '-e' or '-d'.")
 
 if __name__ == "__main__":
     main()
