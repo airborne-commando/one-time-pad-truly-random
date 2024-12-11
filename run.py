@@ -33,11 +33,43 @@ class OneTimePadModulo26:
         return '\n'.join(table)
 
 def generate_random_letters(length=2048):
-    return ''.join(random.choice(string.ascii_lowercase) for _ in range(length))
+    return ''.join(random.choice(string.ascii_uppercase) for _ in range(length))
 
-def scramble_text(text):
+def scramble_text(text, add_random_chars=False, add_complexity=False):
     text_list = list(text)
     random.shuffle(text_list)
+    
+    if add_random_chars:
+        insert_positions = random.sample(
+            range(len(text_list)), 
+            k=random.randint(1, max(1, len(text_list)//10))
+        )
+        for pos in insert_positions:
+            text_list.insert(pos, random.choice(string.ascii_uppercase))
+
+    if add_complexity:
+        # Reverse segments of the text
+        segment_size = random.randint(2, max(2, len(text_list)//5))
+        for i in range(0, len(text_list), segment_size):
+            text_list[i:i + segment_size] = reversed(text_list[i:i + segment_size])
+        
+        # Interchange random segments of the text
+        for _ in range(random.randint(1, max(1, len(text_list)//10))):
+            start1 = random.randint(0, len(text_list) - 1)
+            start2 = random.randint(0, len(text_list) - 1)
+            if start1 != start2:
+                end1 = min(start1 + segment_size, len(text_list))
+                end2 = min(start2 + segment_size, len(text_list))
+                text_list[start1:end1], text_list[start2:end2] = text_list[start2:end2], text_list[start1:end1]
+
+        # Replace some characters with random characters
+        replace_positions = random.sample(
+            range(len(text_list)),
+            k=random.randint(1, max(1, len(text_list)//10))
+        )
+        for pos in replace_positions:
+            text_list[pos] = random.choice(string.ascii_uppercase)
+
     return ''.join(text_list)
 
 def decrypt_with_key_from_file(ciphertext_file, key_file):
@@ -116,8 +148,14 @@ def main():
 
         # Ask if the user wants to scramble the ciphertext
         scramble_option = input("Do you want to scramble the ciphertext? (n/y): ").lower()
+        add_random_chars = False
+        add_complexity = False
         if scramble_option == 'y':
-            cipher_text = scramble_text(cipher_text)
+            add_random_option = input("Do you want to add random ciphertext at a random chance? (n/y): ").lower()
+            add_random_chars = add_random_option == 'y'
+            add_complexity_option = input("Do you want to add additional complexity to the randomness? (n/y): ").lower()
+            add_complexity = add_complexity_option == 'y'
+            cipher_text = scramble_text(cipher_text, add_random_chars, add_complexity)
 
         with open('./text/ciphertext.txt', 'w') as file:
             file.write(cipher.tty(cipher_text))
@@ -138,9 +176,15 @@ def main():
         decrypt_with_key_from_file(ciphertext_file, key_file)
 
     elif command == '-/?':
-            print("commands are as follows:\n"
+            print("Commands are as follows:\n"
                 "Use '-e' to encrypt a file '-f' or text '-t'\n"
-                "use '-d' to decrypt a file '-f' or just pass '-d' to decrypt the ./text directory")
+                "Use '-d' to decrypt a file '-f' or just pass '-d' to decrypt the ./text directory\n"
+                "randomness: will ask the user if you'd want to scramble the ciphertext around\n"
+                "complexity: will ask the user if it wants to add a random cipher\n"
+                "Will also ask the user to add additional complexity to the randomness\n"
+                "the script will devide the text into random segments and reverses each segment\n"
+                "selects random segments and swaps their positions with other random segments\n"
+                "script replaces a few random characters in the text with other random characters from the alphabet")
             return
 
     else:
