@@ -98,6 +98,10 @@ def decrypt_with_key(cipher_text, key):
     print(f"{'':12}{'-' * len(cipher_text)}")
     print(f"Decrypted:  {' '.join(cipher.tty(decrypted_text))} (decrypted)")
 
+def clear_screen():
+    # Cross-platform screen clearing
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 def main():
     cipher = OneTimePadModulo26()
 
@@ -121,6 +125,13 @@ def main():
         else:
             print("Error: Invalid input. Use '-e -f <file_path>', '-e -t <your_text>', or '-d' as arguments.")
             return
+
+        # Check if challenge mode is enabled
+        challenge_mode = '-c' in sys.argv
+
+        if challenge_mode:
+            # Clear the screen at the start of encryption
+            clear_screen()
 
         # Ensure the 'text' directory exists
         os.makedirs('text', exist_ok=True)
@@ -156,13 +167,23 @@ def main():
         with open('./text/ciphertext.txt', 'w') as file:
             file.write(cipher.tty(cipher_text))
 
-        print(cipher.get_vigenere_table())
-
         message_length = len(plain_text)
-        
-        print(f"Plain:  {' '.join(cipher.tty(plain_text))} (message)")
-        print(f"Key:    {' '.join(cipher.tty(random_cipher_key[:message_length]))} (secret)")
-        print(f"Cipher: {' '.join(cipher.tty(cipher_text))} (cipher)")
+
+        # Create a new file to store the output
+        with open('./text/output.txt', 'w') as output_file:
+            # Write the Vigenere table
+            output_file.write("Vigenere Table:\n")
+            output_file.write(cipher.get_vigenere_table() + "\n\n")
+
+            # Write the key and ciphertext, but not the plaintext in challenge mode
+            if not challenge_mode:
+                output_file.write(f"Plain:  {' '.join(cipher.tty(plain_text))} (message)\n")
+            output_file.write(f"Key:    {' '.join(cipher.tty(random_cipher_key[:message_length]))} (secret)\n")
+            output_file.write(f"Cipher: {' '.join(cipher.tty(cipher_text))} (cipher)\n")
+
+        print("Encryption details have been saved to ./text/output.txt")
+        if challenge_mode:
+            print("Challenge mode: Plaintext not included in output")
 
     elif command == '-d':
         ciphertext_file = "./text/ciphertext.txt"
@@ -171,16 +192,17 @@ def main():
         decrypt_with_key_from_file(ciphertext_file, key_file)
 
     elif command == '-/?':
-            print("Commands are as follows:\n"
-                "Use '-e' to encrypt a file '-f' or text '-t'\n"
-                "Use '-d' to decrypt a file '-f' or just pass '-d' to decrypt the ./text directory\n"
-                "randomness: will ask the user if you'd want to scramble the ciphertext around\n"
-                "complexity: will ask the user if it wants to add a random cipher\n"
-                "Will also ask the user to add additional complexity to the randomness\n"
-                "the script will divide the text into random segments and reverse each segment\n"
-                "selects random segments and swaps their positions with other random segments\n"
-                "script replaces a few random characters in the text with other random characters from the alphabet")
-            return
+        print("Commands are as follows:\n"
+              "Use '-e' to encrypt a file '-f' or text '-t'\n"
+              "Use '-d' to decrypt a file '-f' or just pass '-d' to decrypt the ./text directory\n"
+              "Use '-c' with '-e' to enable challenge mode (plaintext not included in output and screen cleared)\n"
+              "randomness: will ask the user if you'd want to scramble the ciphertext around\n"
+              "complexity: will ask the user if it wants to add a random cipher\n"
+              "Will also ask the user to add additional complexity to the randomness\n"
+              "the script will divide the text into random segments and reverse each segment\n"
+              "selects random segments and swaps their positions with other random segments\n"
+              "script replaces a few random characters in the text with other random characters from the alphabet")
+        return
 
     else:
         print("Error: Invalid command. Use '-e' or '-d'.")
