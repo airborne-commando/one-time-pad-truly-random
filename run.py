@@ -32,7 +32,7 @@ class OneTimePadModulo26:
             table.append(' '.join(row))
         return '\n'.join(table)
 
-def generate_random_letters(length=2048):
+def generate_random_letters(length):
     return ''.join(random.choice(string.ascii_uppercase) for _ in range(length))
 
 def scramble_text(text, add_random_chars=False, add_complexity=False):
@@ -128,22 +128,18 @@ def main():
         with open('./text/plaintext.txt', 'w') as file:
             file.write(user_input)
 
-        # Generate random letters for cipher key
-        random_cipher_key = generate_random_letters()
+        # Clean the input text
+        plain_text = re.sub(r'[^A-Z]', '', user_input.upper())
+
+        # Generate random letters for cipher key with the same length as plain_text
+        random_cipher_key = generate_random_letters(len(plain_text))
         with open('./text/cipherkey.txt', 'w') as file:
             file.write(random_cipher_key)
 
-        with open('./text/plaintext.txt', 'r') as file:
-            plain_text = re.sub(r'[^A-Z]', '', file.read().upper())
-
-        with open('./text/cipherkey.txt', 'r') as file:
-            cipher_key = re.sub(r'[^A-Z]', '', file.read().upper())
-
-        cipher_text = cipher.encrypt(cipher_key, plain_text)
-        decoded_plain_text = cipher.decrypt(cipher_key, cipher_text)
-
-        if cipher_text is False or decoded_plain_text is False:
-            print("For perfect encryption in the one time pad, the key length must be equal to, or greater than, the message length.")
+        cipher_text = cipher.encrypt(random_cipher_key, plain_text)
+        
+        if cipher_text is False:
+            print("For perfect encryption in the one-time pad, the key length must be equal to or greater than the message length.")
             return
 
         # Ask if the user wants to scramble the ciphertext
@@ -163,16 +159,15 @@ def main():
         print(cipher.get_vigenere_table())
 
         message_length = len(plain_text)
-        cipher_key_used = cipher_key[:message_length]
-
+        
         print(f"Plain:  {' '.join(cipher.tty(plain_text))} (message)")
-        print(f"Key:    {' '.join(cipher.tty(cipher_key_used))} (secret)")
-        print(f"        {'-' * (message_length * 2 - 1)}")
+        print(f"Key:    {' '.join(cipher.tty(random_cipher_key[:message_length]))} (secret)")
         print(f"Cipher: {' '.join(cipher.tty(cipher_text))} (cipher)")
 
     elif command == '-d':
         ciphertext_file = "./text/ciphertext.txt"
         key_file = "./text/cipherkey.txt"
+        
         decrypt_with_key_from_file(ciphertext_file, key_file)
 
     elif command == '-/?':
@@ -182,7 +177,7 @@ def main():
                 "randomness: will ask the user if you'd want to scramble the ciphertext around\n"
                 "complexity: will ask the user if it wants to add a random cipher\n"
                 "Will also ask the user to add additional complexity to the randomness\n"
-                "the script will devide the text into random segments and reverses each segment\n"
+                "the script will divide the text into random segments and reverse each segment\n"
                 "selects random segments and swaps their positions with other random segments\n"
                 "script replaces a few random characters in the text with other random characters from the alphabet")
             return
