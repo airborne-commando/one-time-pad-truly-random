@@ -3,6 +3,7 @@ import sys
 import re
 import random
 import string
+import argparse
 
 # Author airborne-commando on github
 
@@ -103,34 +104,34 @@ def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def main():
+    parser = argparse.ArgumentParser(description="One-time pad encryption/decryption tool")
+    parser.add_argument('-e', '--encrypt', action='store_true', help='Encrypt mode')
+    parser.add_argument('-d', '--decrypt', action='store_true', help='Decrypt mode')
+    parser.add_argument('-c', '--challenge', action='store_true', help='Challenge mode')
+    parser.add_argument('-f', '--file', help='Input file path')
+    parser.add_argument('-t', '--text', nargs='+', help='Input text')
+
+    args = parser.parse_args()
+
     cipher = OneTimePadModulo26()
 
-    if len(sys.argv) < 2:
-        print("Error: No input provided. Use '-e -f <file_path>', '-e -t <your_text>', or '-d' as arguments.")
-        return
-
-    command = sys.argv[1]
-
-    if command == '-e':
-        if len(sys.argv) < 4:
-            print("Error: Invalid input for encryption. Use '-e -f <file_path>', '-e -t <your_text>', or '-d' as arguments.")
-            return
-
-        input_type = sys.argv[2]
-        if input_type == '-f' and os.path.exists(sys.argv[3]):
-            with open(sys.argv[3], 'r') as file:
-                user_input = file.read().upper()
-        elif input_type == '-t':
-            user_input = ' '.join(sys.argv[3:]).upper()  # Join all arguments after 'text' into a single string
+    if args.encrypt:
+        if args.file:
+            if os.path.exists(args.file):
+                with open(args.file, 'r') as file:
+                    user_input = file.read().upper()
+            else:
+                print(f"Error: File '{args.file}' does not exist.")
+                return
+        elif args.text:
+            user_input = ' '.join(args.text).upper()
         else:
-            print("Error: Invalid input. Use '-e -f <file_path>', '-e -t <your_text>', or '-d' as arguments.")
+            print("Error: Please provide either a file (-f) or text (-t) for encryption.")
             return
 
-        # Check if challenge mode is enabled
-        challenge_mode = '-c' in sys.argv
+        challenge_mode = args.challenge
 
         if challenge_mode:
-            # Clear the screen at the start of encryption
             clear_screen()
 
         # Ensure the 'text' directory exists
@@ -140,7 +141,7 @@ def main():
             file.write(user_input)
 
         # Clean the input text
-        plain_text = re.sub(r'[^A-Z]', '', user_input.upper())
+        plain_text = re.sub(r'[^A-Z]', '', user_input)
 
         # Generate random letters for cipher key with the same length as plain_text
         random_cipher_key = generate_random_letters(len(plain_text))
@@ -185,27 +186,14 @@ def main():
         if challenge_mode:
             print("Challenge mode: Plaintext not included in output")
 
-    elif command == '-d':
+    elif args.decrypt:
         ciphertext_file = "./text/ciphertext.txt"
         key_file = "./text/cipherkey.txt"
         
         decrypt_with_key_from_file(ciphertext_file, key_file)
 
-    elif command == '-/?':
-        print("Commands are as follows:\n"
-              "Use '-e' to encrypt a file '-f' or text '-t'\n"
-              "Use '-d' to decrypt a file '-f' or just pass '-d' to decrypt the ./text directory\n"
-              "Use '-c' with '-e' to enable challenge mode (plaintext not included in output and screen cleared)\n"
-              "randomness: will ask the user if you'd want to scramble the ciphertext around\n"
-              "complexity: will ask the user if it wants to add a random cipher\n"
-              "Will also ask the user to add additional complexity to the randomness\n"
-              "the script will divide the text into random segments and reverse each segment\n"
-              "selects random segments and swaps their positions with other random segments\n"
-              "script replaces a few random characters in the text with other random characters from the alphabet")
-        return
-
     else:
-        print("Error: Invalid command. Use '-e' or '-d'.")
+        print("Error: Please specify either encryption (-e) or decryption (-d) mode.")
 
 if __name__ == "__main__":
     main()
