@@ -104,14 +104,30 @@ def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def main():
-    parser = argparse.ArgumentParser(description="One-time pad encryption/decryption tool")
+    parser = argparse.ArgumentParser(description="One-time pad encryption/decryption tool", add_help=False)
     parser.add_argument('-e', '--encrypt', action='store_true', help='Encrypt mode')
     parser.add_argument('-d', '--decrypt', action='store_true', help='Decrypt mode')
     parser.add_argument('-c', '--challenge', action='store_true', help='Challenge mode')
     parser.add_argument('-f', '--file', help='Input file path')
     parser.add_argument('-t', '--text', nargs='+', help='Input text')
+    parser.add_argument('-/?', '--usage', action='store_true', help='Show usage information')
 
     args = parser.parse_args()
+
+    if args.usage:
+        print("Usage:")
+        print("  Encryption: python run.py -e [-c] (-f <file_path> | -t <your_text>)")
+        print("  Decryption: python run.py -d")
+        print("\nOptions:")
+        print("  -e, --encrypt     Encrypt mode")
+        print("  -d, --decrypt     Decrypt mode")
+        print("  -c, --challenge   Challenge mode (clears screen and excludes plaintext from output)")
+        print("  -f, --file        Input file path")
+        print("  -t, --text        Input text (use quotes for multi-word input)")
+        print("  -/?, --usage      Show this usage information")
+        print("\nExample:")
+        print("  python run.py -e -c -t \"This is a secret message\"")
+        return
 
     cipher = OneTimePadModulo26()
 
