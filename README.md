@@ -30,7 +30,7 @@ Clone or download the files into a machine with PHP from the github repository.
 1. Enter the source root directory from the shell (`cd /path/to/repository`).
 2. you will also need to define an agrunment before running Use 'file <file_path>' or 'text <your_text>' as arguments. 
 
-IE `python run.py 'encrypt file <file_path>'` or `python run.py encrypt text <your_text>`
+IE `python run.py '-e -f <file_path>'` or `python run.py -e -t <your_text>`
 
 You also have an option to scramble the ciphertext; to add a layer of security.
 
@@ -38,7 +38,7 @@ You also have an option to scramble the ciphertext; to add a layer of security.
 
 1. Enter the source root directory from the shell (`cd /path/to/repository`).
 2. edit the cipherkey.txt and ciphertext.txt (secret)
-3. Do `python run.py decrypt` from the command line.
+3. Do `python run.py -d -t <your_text>`, or `-d` from the command line.
 4. It should run the decryption correctly.
 
 ### Brute force tool
